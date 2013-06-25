@@ -13,7 +13,7 @@
 # - *Default*: 'absent'
 #
 class nsswitch (
-  $config_file = 'etc/nsswitch.conf',
+  $config_file = '/etc/nsswitch.conf',
   $ensure_ldap = 'absent',
 ) {
 

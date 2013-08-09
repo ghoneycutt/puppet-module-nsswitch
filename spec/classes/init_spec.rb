@@ -114,9 +114,9 @@ networks:   files
 protocols:  files
 rpc:        files
 services:   files
-netgroup:   files
+netgroup:   files nis
 publickey:  files
-automount:  files
+automount:  files nis
 aliases:    files
 })
       }

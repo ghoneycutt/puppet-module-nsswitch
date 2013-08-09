@@ -12,13 +12,19 @@
 # Should LDAP be used? Valid values are 'absent' and 'present'
 # - *Default*: 'absent'
 #
+# [*ensure_vas*]
+# Should VAS be used? Valid values are 'absent' and 'present'
+# - *Default*: 'absent'
+#
 class nsswitch (
   $config_file = '/etc/nsswitch.conf',
   $ensure_ldap = 'absent',
+  $ensure_vas = 'absent',
 ) {
 
   validate_absolute_path($config_file)
   validate_re($ensure_ldap, '^(present|absent)$', "Valid values for ensure_ldap are \'absent\' and \'present\'.")
+  validate_re($ensure_vas, '^(present|absent)$', "Valid values for ensure_vas are \'absent\' and \'present\'.")
 
   file { 'nsswitch_config_file':
     ensure  => file,

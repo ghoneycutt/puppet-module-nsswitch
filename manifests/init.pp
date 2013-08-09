@@ -33,6 +33,8 @@ class nsswitch (
     'Valid values for ensure_ldap are \'absent\' and \'present\'.')
   validate_re($ensure_qas, '^(present|absent)$',
     'Valid values for ensure_qas are \'absent\' and \'present\'.')
+  validate_re($qas_nss_module, '^vas(3|4)$',
+    'Valid values for qas_nss_module are \'vas3\' and \'vas4\'.')
 
   file { 'nsswitch_config_file':
     ensure  => file,

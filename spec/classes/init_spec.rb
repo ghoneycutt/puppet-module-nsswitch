@@ -81,9 +81,9 @@ aliases:    files
       }
     end
 
-    context 'with vas enabled' do
+    context 'with qas enabled' do
       let :params do
-        { :ensure_vas => 'present' }
+        { :ensure_qas => 'present' }
       end
 
       it {
@@ -99,9 +99,9 @@ aliases:    files
 %{# This file is being maintained by Puppet.
 # DO NOT EDIT
 
-passwd:     files vas3
+passwd:     files vas4
 shadow:     files
-group:      files vas3
+group:      files vas4
 
 sudoers:    files
 
@@ -116,7 +116,7 @@ rpc:        files
 services:   files
 netgroup:   files
 publickey:  files
-automount:  files nis
+automount:  files
 aliases:    files
 })
       }

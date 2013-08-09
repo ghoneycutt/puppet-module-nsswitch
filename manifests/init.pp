@@ -12,21 +12,27 @@
 # Should LDAP be used? Valid values are 'absent' and 'present'
 # - *Default*: 'absent'
 #
-# [*ensure_vas*]
-# Should VAS be used? Valid values are 'absent' and 'present'
+# [*ensure_qas*]
+# Should QAS (Quest Authentication Services) be used? Valid values are 'absent'
+# and 'present'
 # - *Default*: 'absent'
 #
+# [*qas_nss_module*]
+# Name of NSS module to use for QAS
+# - *Default*: 'vas4'
+#
 class nsswitch (
-  $config_file = '/etc/nsswitch.conf',
-  $ensure_ldap = 'absent',
-  $ensure_vas = 'absent',
+  $config_file    = '/etc/nsswitch.conf',
+  $ensure_ldap    = 'absent',
+  $ensure_qas     = 'absent',
+  $qas_nss_module = 'vas4',
 ) {
 
   validate_absolute_path($config_file)
   validate_re($ensure_ldap, '^(present|absent)$',
     'Valid values for ensure_ldap are \'absent\' and \'present\'.')
-  validate_re($ensure_vas, '^(present|absent)$',
-    'Valid values for ensure_vas are \'absent\' and \'present\'.')
+  validate_re($ensure_qas, '^(present|absent)$',
+    'Valid values for ensure_qas are \'absent\' and \'present\'.')
 
   file { 'nsswitch_config_file':
     ensure  => file,

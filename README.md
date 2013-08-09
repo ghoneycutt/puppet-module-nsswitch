@@ -3,7 +3,7 @@
 [![Build Status](
 https://api.travis-ci.org/ghoneycutt/puppet-module-nsswitch.png?branch=master)](https://travis-ci.org/ghoneycutt/puppet-module-nsswitch)
 
-Puppet module to manage nsswitch that optionally allows for LDAP integration.
+Puppet module to manage nsswitch that optionally allows for LDAP and VAS integration.
 
 # Compatibility #
   * EL 5
@@ -16,4 +16,8 @@ Path to configuration file
 
 [*ensure_ldap*]
 Should LDAP be used? Valid values are 'absent' and 'present'
+- *Default*: 'absent'
+
+[*ensure_vas*]
+Should VAS be used? Valid values are 'absent' and 'present'
 - *Default*: 'absent'

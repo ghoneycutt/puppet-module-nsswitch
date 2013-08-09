@@ -5,7 +5,7 @@ passwd:     files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_v
 shadow:     files<% if @ensure_ldap == 'present' %> ldap<% end %>
 group:      files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> vas3<% end %>
 
-sudoers:    files <% if @ensure_ldap == 'present' %> ldap<% end %>
+sudoers:    files<% if @ensure_ldap == 'present' %> ldap<% end %>
 
 hosts:      files dns
 

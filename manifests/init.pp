@@ -23,8 +23,10 @@ class nsswitch (
 ) {
 
   validate_absolute_path($config_file)
-  validate_re($ensure_ldap, '^(present|absent)$', "Valid values for ensure_ldap are \'absent\' and \'present\'.")
-  validate_re($ensure_vas, '^(present|absent)$', "Valid values for ensure_vas are \'absent\' and \'present\'.")
+  validate_re($ensure_ldap, '^(present|absent)$',
+    'Valid values for ensure_ldap are \'absent\' and \'present\'.')
+  validate_re($ensure_vas, '^(present|absent)$',
+    'Valid values for ensure_vas are \'absent\' and \'present\'.')
 
   file { 'nsswitch_config_file':
     ensure  => file,

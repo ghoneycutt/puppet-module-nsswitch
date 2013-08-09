@@ -19,5 +19,10 @@ Should LDAP be used? Valid values are 'absent' and 'present'
 - *Default*: 'absent'
 
 [*ensure_vas*]
-Should VAS be used? Valid values are 'absent' and 'present'
+Should QAS (Quest Authentication Services) be used? Valid values are 'absent'
+and 'present'
 - *Default*: 'absent'
+
+[*qas_nss_module*]
+Name of NSS module to use for QAS
+- *Default*: 'vas4'

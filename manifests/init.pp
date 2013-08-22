@@ -35,8 +35,8 @@ class nsswitch (
       mode    => '0755',
       notify  => Exec[ 'nsswitch_svccfg' ],
     }
-    Exec { 'nsswitch_svccfg' :
-      command     => "/etc/svccfg.d/${config_file}",
+    exec { 'nsswitch_svccfg' :
+      command     => $config_file,
       path        => '/usr/bin:/bin:/usr/sbin:/sbin',
       refreshonly => true,
     }

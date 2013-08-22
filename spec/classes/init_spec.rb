@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'nsswitch' do
 
   describe 'included class' do
-    context 'with defaults' do
+    context 'with defaults on a supported OS other than Solaris 11' do
+      let(:facts) { { :operatingsystem => 'Linux' } }
       it {
         should include_class('nsswitch')
         should contain_file('nsswitch_config_file').with({
@@ -37,6 +38,27 @@ publickey:  files
 automount:  files
 aliases:    files
 })
+      }
+    end
+
+    context 'with defaults on a supported Solaris 11' do
+      let :params do
+        { :config_file => '/etc/svccfg.d/nsswitch' }
+      end
+
+      let :facts do 
+        { :operatingsystem => 'Solaris', :operatingsystemrelease => '11.0' } 
+      end
+
+      it {
+        should include_class('nsswitch')
+        should contain_file('nsswitch_config_file').with({
+          'ensure'  => 'file',
+          'path'    => '/etc/svccfg.d/nsswitch',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+        })
       }
     end
 

@@ -17,12 +17,39 @@ class nsswitch (
   validate_re($vas_nss_module, '^vas(3|4)$',
     'Valid values for vas_nss_module are \'vas3\' and \'vas4\'.')
 
-  file { 'nsswitch_config_file':
-    ensure  => file,
-    path    => $config_file,
-    content => template('nsswitch/nsswitch.conf.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  if $::operatingsystem == 'Solaris' and $::operatingsystemrelease =~ /^11/ {
+
+    file { '/etc/svccfg.d' :
+      ensure => directory,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+      before => File[ 'nsswitch_config_file' ],
+    }
+    file { 'nsswitch_config_file':
+      ensure  => file,
+      path    => $config_file,
+      content => template('nsswitch/nsswitch.svccfg.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      notify  => Exec[ 'nsswitch_svccfg' ],
+    }
+    Exec { 'nsswitch_svccfg' :
+      command     => "/etc/svccfg.d/${config_file}",
+      path        => '/usr/bin:/bin:/usr/sbin:/sbin',
+      refreshonly => true,
+    }
+
+  } else {
+
+    file { 'nsswitch_config_file':
+      ensure  => file,
+      path    => $config_file,
+      content => template('nsswitch/nsswitch.conf.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+    }
   }
 }

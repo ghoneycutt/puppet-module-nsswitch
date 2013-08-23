@@ -17,7 +17,7 @@ class nsswitch (
   validate_re($vas_nss_module, '^vas(3|4)$',
     'Valid values for vas_nss_module are \'vas3\' and \'vas4\'.')
 
-  if $::operatingsystem == 'Solaris' and $::operatingsystemrelease =~ /^11/ {
+  if $::operatingsystem == 'Solaris' and $::operatingsystemrelease =~ /^5\.11/ {
 
     file { '/etc/svccfg.d' :
       ensure => directory,

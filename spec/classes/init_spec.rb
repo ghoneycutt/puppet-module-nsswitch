@@ -46,8 +46,8 @@ aliases:    files
         { :config_file => '/etc/svccfg.d/nsswitch' }
       end
 
-      let :facts do 
-        { :operatingsystem => 'Solaris', :operatingsystemrelease => '11.0' } 
+      let :facts do
+        { :operatingsystem => 'Solaris', :operatingsystemrelease => '5.11' }
       end
 
       it {

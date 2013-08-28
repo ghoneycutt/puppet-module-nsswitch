@@ -105,19 +105,19 @@ group:      files vas4
 
 sudoers:    files
 
-hosts:      files dns
+hosts:      files dns nis
 
 bootparams: files
 ethers:     files
 netmasks:   files
 networks:   files
-protocols:  files
+protocols:  files nis
 rpc:        files
-services:   files
+services:   files nis
 netgroup:   files nis
 publickey:  files
 automount:  files nis
-aliases:    files
+aliases:    files nis
 })
       }
     end
@@ -149,19 +149,19 @@ group:      files ldap vas4
 
 sudoers:    files ldap
 
-hosts:      files dns
+hosts:      files dns nis
 
 bootparams: files
 ethers:     files
 netmasks:   files
 networks:   files
-protocols:  files ldap
+protocols:  files ldap nis
 rpc:        files
-services:   files ldap
+services:   files ldap nis
 netgroup:   files ldap nis
 publickey:  files
 automount:  files ldap nis
-aliases:    files
+aliases:    files nis
 })
       }
     end

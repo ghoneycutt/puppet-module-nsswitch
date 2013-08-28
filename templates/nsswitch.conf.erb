@@ -7,16 +7,16 @@ group:      files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_v
 
 sudoers:    files<% if @ensure_ldap == 'present' %> ldap<% end %>
 
-hosts:      files dns
+hosts:      files dns<% if @ensure_vas == 'present' %> nis<% end %>
 
 bootparams: files
 ethers:     files
 netmasks:   files
 networks:   files
-protocols:  files<% if @ensure_ldap == 'present' %> ldap<% end %>
+protocols:  files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> nis<% end %>
 rpc:        files
-services:   files<% if @ensure_ldap == 'present' %> ldap<% end %>
+services:   files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> nis<% end %>
 netgroup:   files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> nis<% end %>
 publickey:  files
 automount:  files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> nis<% end %>
-aliases:    files
+aliases:    files<% if @ensure_vas == 'present' %> nis<% end %>

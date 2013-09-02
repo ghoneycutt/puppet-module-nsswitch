@@ -10,6 +10,8 @@ Puppet module to manage nsswitch that optionally allows for LDAP and VAS integra
 # Compatibility #
   * EL 5
   * EL 6
+  * Solaris 9
+  * Solaris 10
 
 ===
 

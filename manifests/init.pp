@@ -17,6 +17,10 @@ class nsswitch (
   validate_re($vas_nss_module, '^vas(3|4)$',
     'Valid values for vas_nss_module are \'vas3\' and \'vas4\'.')
 
+  if $::kernel == 'SunOS' {
+    include nsswitch::solaris
+  }
+
   file { 'nsswitch_config_file':
     ensure  => file,
     path    => $config_file,

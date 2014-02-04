@@ -26,12 +26,39 @@ class nsswitch (
   validate_string($vas_nss_module_aliases)
   validate_string($vas_nss_module_services)
 
-  file { 'nsswitch_config_file':
-    ensure  => file,
-    path    => $config_file,
-    content => template('nsswitch/nsswitch.conf.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  if $::operatingsystem == 'Solaris' and $::operatingsystemrelease =~ /^5\.11/ {
+
+    file { '/etc/svccfg.d' :
+      ensure => directory,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+      before => File[ 'nsswitch_config_file' ],
+    }
+    file { 'nsswitch_config_file':
+      ensure  => file,
+      path    => $config_file,
+      content => template('nsswitch/nsswitch.svccfg.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      notify  => Exec[ 'nsswitch_svccfg' ],
+    }
+    exec { 'nsswitch_svccfg' :
+      command     => $config_file,
+      path        => '/usr/bin:/bin:/usr/sbin:/sbin',
+      refreshonly => true,
+    }
+
+  } else {
+
+    file { 'nsswitch_config_file':
+      ensure  => file,
+      path    => $config_file,
+      content => template('nsswitch/nsswitch.conf.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+    }
   }
 }

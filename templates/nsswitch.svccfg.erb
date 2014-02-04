@@ -1,0 +1,26 @@
+#!/bin/sh
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+svccfg -s name-service/switch setprop config/passwd = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> <%= vas_nss_module %><% end %>")'
+svccfg -s name-service/switch setprop config/shadow = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %>")'
+svccfg -s name-service/switch setprop config/group = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> <%= vas_nss_module %><% end %>")'
+
+svccfg -s name-service/switch setprop config/sudoers = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %>")'
+
+svccfg -s name-service/switch setprop config/hosts = astring: '(" files dns")'
+
+svccfg -s name-service/switch setprop config/bootparams = astring: '(" files")'
+svccfg -s name-service/switch setprop config/ethers = astring: '(" files")'
+svccfg -s name-service/switch setprop config/netmasks = astring: '(" files")'
+svccfg -s name-service/switch setprop config/networks = astring: '(" files")'
+svccfg -s name-service/switch setprop config/protocols = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %>")'
+svccfg -s name-service/switch setprop config/rpc = astring: '(" files")'
+svccfg -s name-service/switch setprop config/services = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %>")'
+svccfg -s name-service/switch setprop config/netgroup = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> nis<% end %>")'
+svccfg -s name-service/switch setprop config/publickey = astring: '(" files")'
+svccfg -s name-service/switch setprop config/automount = astring: '(" files<% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %> nis<% end %>")'
+svccfg -s name-service/switch setprop config/aliases = astring: '(" files")'
+
+svcadm refresh name-service/switch
+

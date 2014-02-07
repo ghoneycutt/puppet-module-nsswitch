@@ -33,7 +33,7 @@ class nsswitch (
 
   case $::osfamily {
     'Solaris': {
-      $default_nsswitch_ipnodes   = 'files'
+      $default_nsswitch_ipnodes   = 'files dns'
       $default_nsswitch_printers  = 'user files'
       $default_nsswitch_auth_attr = 'files'
       $default_nsswitch_prof_attr = 'files'

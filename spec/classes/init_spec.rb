@@ -292,7 +292,7 @@ aliases:    files
 
       it {
         should contain_file('nsswitch_config_file').with_content(/^printers:   user files$/)
-        should contain_file('nsswitch_config_file').with_content(/^ipnodes:    files$/)
+        should contain_file('nsswitch_config_file').with_content(/^ipnodes:    files dns$/)
         should contain_file('nsswitch_config_file').with_content(/^auth_attr:  files$/)
         should contain_file('nsswitch_config_file').with_content(/^prof_attr:  files$/)
         should contain_file('nsswitch_config_file').with_content(/^project:    files$/)
@@ -302,13 +302,13 @@ aliases:    files
     context 'with default options on osfamily RedHat' do
       let :facts do
       {
-        :osfamily => 'Redhat',
+        :osfamily => 'RedHat',
       }
       end
 
       it {
         should_not contain_file('nsswitch_config_file').with_content(/^printers:   user files$/)
-        should_not contain_file('nsswitch_config_file').with_content(/^ipnodes:    files$/)
+        should_not contain_file('nsswitch_config_file').with_content(/^ipnodes:    files dns$/)
         should_not contain_file('nsswitch_config_file').with_content(/^auth_attr:  files$/)
         should_not contain_file('nsswitch_config_file').with_content(/^prof_attr:  files$/)
         should_not contain_file('nsswitch_config_file').with_content(/^project:    files$/)
@@ -324,7 +324,7 @@ aliases:    files
 
       it {
         should_not contain_file('nsswitch_config_file').with_content(/^printers:   user files$/)
-        should_not contain_file('nsswitch_config_file').with_content(/^ipnodes:    files$/)
+        should_not contain_file('nsswitch_config_file').with_content(/^ipnodes:    files dns$/)
         should_not contain_file('nsswitch_config_file').with_content(/^auth_attr:  files$/)
         should_not contain_file('nsswitch_config_file').with_content(/^prof_attr:  files$/)
         should_not contain_file('nsswitch_config_file').with_content(/^project:    files$/)
@@ -340,7 +340,7 @@ aliases:    files
 
       it {
         should_not contain_file('nsswitch_config_file').with_content(/^printers:   user files$/)
-        should_not contain_file('nsswitch_config_file').with_content(/^ipnodes:    files$/)
+        should_not contain_file('nsswitch_config_file').with_content(/^ipnodes:    files dns$/)
         should_not contain_file('nsswitch_config_file').with_content(/^auth_attr:  files$/)
         should_not contain_file('nsswitch_config_file').with_content(/^prof_attr:  files$/)
         should_not contain_file('nsswitch_config_file').with_content(/^project:    files$/)

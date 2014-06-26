@@ -98,12 +98,30 @@ class nsswitch (
     validate_string($nsswitch_project_real)
   }
 
-  file { 'nsswitch_config_file':
-    ensure  => file,
-    path    => $config_file,
-    content => template('nsswitch/nsswitch.conf.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  if $::operatingsystem == 'Solaris' and $::kernelrelease == '5.11' {
+    class {  'nsswitch::solaris11' :
+      ensure_ldap              => $ensure_ldap,
+      ensure_vas               => $ensure_vas,
+      vas_nss_module_passwd    => $vas_nss_module_passwd,
+      vas_nss_module_group     => $vas_nss_module_group,
+      vas_nss_module_automount => $vas_nss_module_automount,
+      vas_nss_module_netgroup  => $vas_nss_module_netgroup,
+      vas_nss_module_aliases   => $vas_nss_module_aliases,
+      vas_nss_module_services  => $vas_nss_module_services,
+      nsswitch_ipnodes_real    => $nsswitch_ipnodes_real,
+      nsswitch_printers_real   => $nsswitch_printers_real,
+      nsswitch_auth_attr_real  => $nsswitch_auth_attr_real,
+      nsswitch_prof_attr_real  => $nsswitch_prof_attr_real,
+      nsswitch_project_real    => $nsswitch_project_real,
+    }
+  } else {
+    file { 'nsswitch_config_file':
+      ensure  => file,
+      path    => $config_file,
+      content => template('nsswitch/nsswitch.conf.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+    }
   }
 }

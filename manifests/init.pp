@@ -22,6 +22,7 @@ class nsswitch (
   $aliases                  = 'USE_DEFAULTS',
   $publickey                = 'USE_DEFAULTS',
   $netgroup                 = 'USE_DEFAULTS',
+  $sudoers                  = 'USE_DEFAULTS',
   $nsswitch_ipnodes         = 'USE_DEFAULTS',
   $nsswitch_printers        = 'USE_DEFAULTS',
   $nsswitch_auth_attr       = 'USE_DEFAULTS',
@@ -53,6 +54,7 @@ class nsswitch (
       $default_aliases            = 'files'
       $default_publickey          = 'files'
       $default_netgroup           = 'files'
+      $default_sudoers            = 'files'
       $default_nsswitch_ipnodes   = undef
       $default_nsswitch_printers  = undef
       $default_nsswitch_auth_attr = undef
@@ -70,6 +72,7 @@ class nsswitch (
         $default_aliases    = 'files nisplus'
         $default_publickey  = 'nisplus'
         $default_netgroup   = 'files sss'
+        $default_sudoers    = 'files'
       } else {
         $default_passwd     = 'files'
         $default_shadow     = 'files'
@@ -81,6 +84,7 @@ class nsswitch (
         $default_aliases    = 'files'
         $default_publickey  = 'files'
         $default_netgroup   = 'files'
+        $default_sudoers    = 'files'
       }
 
       $default_nsswitch_ipnodes   = undef
@@ -99,6 +103,7 @@ class nsswitch (
       $default_aliases            = 'files'
       $default_publickey          = 'files'
       $default_netgroup           = 'files'
+      $default_sudoers            = 'files'
       $default_nsswitch_ipnodes   = 'files dns'
       $default_nsswitch_printers  = 'user files'
       $default_nsswitch_auth_attr = 'files'
@@ -179,6 +184,13 @@ class nsswitch (
     $netgroup_real = $netgroup
   }
   validate_string($netgroup_real)
+
+  if $sudoers == 'USE_DEFAULTS' {
+    $sudoers_real = $default_sudoers
+  } else {
+    $sudoers_real = $sudoers
+  }
+  validate_string($sudoers_real)
 
   if $nsswitch_ipnodes == 'USE_DEFAULTS' {
     $nsswitch_ipnodes_real = $default_nsswitch_ipnodes

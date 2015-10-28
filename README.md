@@ -20,6 +20,7 @@ only), 1.9.3, 2.0.0 and 2.1.0.
   * EL 7
   * Solaris 10
   * Suse
+  * OpenSuSE 13.1
 
 ===
 
@@ -112,5 +113,17 @@ String of list of sources for prof_attr database. 'USE_DEFAULTS' allows the modu
 nsswitch_project
 ----------------
 String of list of sources for project database. 'USE_DEFAULTS' allows the module to choose defaults based on the platform.
+
+- *Default*: 'USE_DEFAULTS'
+
+networks
+--------
+String of list of sources for networks database. 'USE_DEFAULTS' allows the module to choose defaults based on the platform.
+
+- *Default*: 'USE_DEFAULTS'
+
+sudoers
+-------
+String of list of sources for sudoers database. 'USE_DEFAULTS' allows the module to choose defaults based on the platform.
 
 - *Default*: 'USE_DEFAULTS'

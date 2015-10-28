@@ -67,6 +67,12 @@
     },
     {
       "operatingsystem": "SLED"
+    },
+    {
+      "operatingsystem": "OpenSuSE",
+      "operatingsystemrelease": [
+        "13.1"
+      ]
     }
   ],
   "description": "Manage nsswitch. Supports LDAP integration.",

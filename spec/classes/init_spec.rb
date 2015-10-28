@@ -105,6 +105,51 @@ aliases:    files
       end
     end
 
+    context 'on Suse 13' do
+      let(:facts) do 
+        { :osfamily          => 'Suse',
+          :lsbmajdistrelease => '13',
+        }
+      end
+
+      it { should contain_class('nsswitch') }
+
+      it {
+        should contain_file('nsswitch_config_file').with({
+          'ensure'  => 'file',
+          'path'    => '/etc/nsswitch.conf',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+        })
+      }
+
+      it {
+        should contain_file('nsswitch_config_file').with_content(
+%{# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+passwd:     compat
+group:      compat
+
+
+hosts:      files mdns_minimal [NOTFOUND=return] dns
+
+bootparams: files
+ethers:     files
+netmasks:   files
+networks:   files dns
+protocols:  files
+rpc:        files
+services:   files
+netgroup:   files nis
+publickey:  files
+automount:  files nis
+aliases:    files
+})
+      }
+    end
+
     context 'on RedHat 7' do
       let(:facts) do
         { :osfamily                  => 'RedHat',
@@ -406,6 +451,28 @@ automount:  files ldap nis
 aliases:    files
 })
     }
+  end
+
+  context 'networks with invalid type' do
+    let(:facts) { { :osfamily => 'RedHat' } }
+    let(:params) { { :networks => ['not','a','string'] } }
+
+    it do
+      expect {
+        should contain_class('nsswitch')
+      }.to raise_error(Puppet::Error,/\["not", "a", "string"\] is not a string/)
+    end
+  end
+
+  context 'sudoers with invalid type' do
+    let(:facts) { { :osfamily => 'RedHat' } }
+    let(:params) { { :sudoers => ['not','a','string'] } }
+
+    it do
+      expect {
+        should contain_class('nsswitch')
+      }.to raise_error(Puppet::Error,/\["not", "a", "string"\] is not a string/)
+    end
   end
 
   context 'with config_file set' do

@@ -5,6 +5,7 @@
 class nsswitch (
   $config_file              = '/etc/nsswitch.conf',
   $ensure_ldap              = 'absent',
+  $ensure_sss               = 'absent',
   $ensure_vas               = 'absent',
   $vas_nss_module_passwd    = 'vas4',
   $vas_nss_module_group     = 'vas4',

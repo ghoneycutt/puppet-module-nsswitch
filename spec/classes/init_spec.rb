@@ -439,4 +439,26 @@ aliases:    files
       }.to raise_error(Puppet::Error)
     end
   end
+
+  context 'with sudoers set to invalid value' do
+    let :params do
+      { :sudoers => false }
+    end
+    let(:facts) { { :osfamily => 'RedHat' } }
+
+    it do
+      expect {
+        should contain_class('nsswitch')
+      }.to raise_error(Puppet::Error,/\s+is not a string/)
+    end
+  end
+
+  context 'with sudoers set to foo' do
+    let :params do
+      { :sudoers => 'foo' }
+    end
+    let(:facts) { { :osfamily => 'RedHat' } }
+
+    it { should contain_file('nsswitch_config_file').with_content(/^sudoers:\s+foo$/) }
+  end
 end

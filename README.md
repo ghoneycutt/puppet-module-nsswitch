@@ -85,6 +85,12 @@ Source for vas to be included in the services database.
 
 - *Default*: ''
 
+sudoers
+-------
+String of list of sources to search for sudoers. 'USE_DEFAULTS' allows the 'USE_DEFAULTS' allows the module to choose defaults based on the platform.
+
+- Default: 'USE_DEFAULTS'
+
 nsswitch_ipnodes
 ----------------
 String of list of sources for ipnodes database. 'USE_DEFAULTS' allows the module to choose defaults based on the platform.

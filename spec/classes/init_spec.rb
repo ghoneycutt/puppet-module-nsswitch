@@ -62,7 +62,7 @@ project:    files
 
     ['RedHat','Suse','Debian'].each do |platform|
       context "on osfamily #{platform}" do
-        if platform = 'RedHat'
+        if platform == 'RedHat'
           let(:facts) do
             {
               :osfamily                  => platform,

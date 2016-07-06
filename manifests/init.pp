@@ -63,17 +63,17 @@ class nsswitch (
     }
     'RedHat': {
       if $::operatingsystemmajrelease == '7' {
-        $default_passwd     = 'files sss'
-        $default_sudoers    = 'files sss'
-        $default_shadow     = 'files sss'
-        $default_group      = 'files sss'
+        $default_passwd     = 'files'
+        $default_sudoers    = 'files'
+        $default_shadow     = 'files'
+        $default_group      = 'files'
         $default_hosts      = 'files dns myhostname'
-        $default_automount  = 'files sss'
-        $default_services   = 'files sss'
+        $default_automount  = 'files'
+        $default_services   = 'files'
         $default_bootparams = 'nisplus [NOTFOUND=return] files'
         $default_aliases    = 'files nisplus'
         $default_publickey  = 'nisplus'
-        $default_netgroup   = 'files sss'
+        $default_netgroup   = 'files'
       } else {
         $default_passwd     = 'files'
         $default_sudoers    = 'files'

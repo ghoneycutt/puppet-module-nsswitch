@@ -138,9 +138,9 @@ aliases:    files
 %{# This file is being maintained by Puppet.
 # DO NOT EDIT
 
-passwd:     files
-shadow:     files
-group:      files
+passwd:     files sss
+shadow:     files sss
+group:      files sss
 
 sudoers:    files
 
@@ -152,10 +152,10 @@ netmasks:   files
 networks:   files
 protocols:  files
 rpc:        files
-services:   files
-netgroup:   files
+services:   files sss
+netgroup:   files sss
 publickey:  nisplus
-automount:  files
+automount:  files sss
 aliases:    files nisplus
 })
       }

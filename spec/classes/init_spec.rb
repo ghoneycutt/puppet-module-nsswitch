@@ -334,7 +334,7 @@ aliases:    files
     end
 
     it {
-      should contain_file('nsswitch_config_file').with_content(/automount:[\s]+files$/)
+      should contain_file('nsswitch_config_file').with_content(/automount:[\s]+files\s*$/)
     }
   end
 

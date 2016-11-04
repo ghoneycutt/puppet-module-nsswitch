@@ -15,11 +15,11 @@ netmasks:   files
 networks:   files
 protocols:  files<% if @ensure_ldap == 'present' %> ldap<% end %>
 rpc:        files
-services:   <%= @services_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_services != '' %> <%= @vas_nss_module_services %><% end %><% end %>
-netgroup:   <%= @netgroup_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_netgroup != '' %> <%= @vas_nss_module_netgroup %><% end %><% end %>
+services:   <%= @services_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_services != nil %> <%= @vas_nss_module_services %><% end %><% end %>
+netgroup:   <%= @netgroup_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_netgroup != nil %> <%= @vas_nss_module_netgroup %><% end %><% end %>
 publickey:  <%= @publickey_real %>
-automount:  <%= @automount_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_automount != '' %> <%= @vas_nss_module_automount %><% end %><% end %>
-aliases:    <%= @aliases_real %><% if @ensure_vas == 'present' %><% if @vas_nss_module_aliases != '' %> <%= @vas_nss_module_aliases %><% end %><% end %>
+automount:  <%= @automount_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_automount != nil %> <%= @vas_nss_module_automount %><% end %><% end %>
+aliases:    <%= @aliases_real %><% if @ensure_vas == 'present' %><% if @vas_nss_module_aliases != nil %> <%= @vas_nss_module_aliases %><% end %><% end %>
 <% if @nsswitch_ipnodes_real != nil -%>
 ipnodes:    <%= @nsswitch_ipnodes_real %>
 <% end -%>

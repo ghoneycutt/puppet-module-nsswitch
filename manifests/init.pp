@@ -23,6 +23,7 @@ class nsswitch (
   $aliases                  = 'USE_DEFAULTS',
   $publickey                = 'USE_DEFAULTS',
   $netgroup                 = 'USE_DEFAULTS',
+  $protocols                = 'USE_DEFAULTS',
   $nsswitch_ipnodes         = 'USE_DEFAULTS',
   $nsswitch_printers        = 'USE_DEFAULTS',
   $nsswitch_auth_attr       = 'USE_DEFAULTS',
@@ -55,6 +56,7 @@ class nsswitch (
       $default_aliases            = 'files'
       $default_publickey          = 'files'
       $default_netgroup           = 'files'
+      $default_protocols          = 'files'
       $default_nsswitch_ipnodes   = undef
       $default_nsswitch_printers  = undef
       $default_nsswitch_auth_attr = undef
@@ -123,6 +125,13 @@ class nsswitch (
     $passwd_real = $passwd
   }
   validate_string($passwd_real)
+
+  if $protocols == 'USE_DEFAULTS' {
+    $protocols_real = $default_protocols
+  } else {
+    $protocols_real = $protocols
+  }
+  validate_string($protocols_real)
 
   if $shadow == 'USE_DEFAULTS' {
     $shadow_real = $default_shadow

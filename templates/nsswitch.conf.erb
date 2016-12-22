@@ -14,7 +14,7 @@ ethers:     <%= @ethers_real %>
 netmasks:   files
 networks:   files
 protocols:  <%= @protocols_real -%><% if @ensure_ldap == 'present' %> ldap<% end %>
-rpc:        files
+rpc:        <%= @rpc_real %>
 services:   <%= @services_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_services != nil %> <%= @vas_nss_module_services %><% end %><% end %>
 netgroup:   <%= @netgroup_real %><% if @ensure_ldap == 'present' %> ldap<% end %><% if @ensure_vas == 'present' %><% if @vas_nss_module_netgroup != nil %> <%= @vas_nss_module_netgroup %><% end %><% end %>
 publickey:  <%= @publickey_real %>

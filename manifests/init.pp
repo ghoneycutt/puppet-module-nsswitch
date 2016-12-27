@@ -80,6 +80,9 @@ class nsswitch (
         $default_aliases    = 'files nisplus'
         $default_publickey  = 'nisplus'
         $default_netgroup   = 'files sss'
+        $default_protocols  = 'files'
+        $default_ethers     = 'files'
+        $default_rpc        = 'files'
       } else {
         $default_passwd     = 'files'
         $default_sudoers    = 'files'
@@ -92,6 +95,9 @@ class nsswitch (
         $default_aliases    = 'files'
         $default_publickey  = 'files'
         $default_netgroup   = 'files'
+        $default_protocols  = 'files'
+        $default_ethers     = 'files'
+        $default_rpc        = 'files'
       }
 
       $default_nsswitch_ipnodes   = undef
@@ -112,6 +118,9 @@ class nsswitch (
       $default_aliases            = 'files'
       $default_publickey          = 'files'
       $default_netgroup           = 'files'
+      $default_protocols          = 'files'
+      $default_ethers             = 'files'
+      $default_rpc                = 'files'
       $default_nsswitch_ipnodes   = 'files dns'
       $default_nsswitch_printers  = 'user files'
       $default_nsswitch_auth_attr = 'files'

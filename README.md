@@ -85,6 +85,24 @@ Source for vas to be included in the services database.
 
 - *Default*: ''
 
+protocols
+---------
+Sources to be included in the protocols database.
+
+- *Default*: 'USE_DEFAULTS'
+
+ethers
+------
+Sources to be included in the ethers database.
+
+- *Default*: 'USE_DEFAULTS'
+
+rpc
+---
+Sources to be included in the rpc database.
+
+- *Default*: 'USE_DEFAULTS'
+
 nsswitch_ipnodes
 ----------------
 String of list of sources for ipnodes database. 'USE_DEFAULTS' allows the module to choose defaults based on the platform.

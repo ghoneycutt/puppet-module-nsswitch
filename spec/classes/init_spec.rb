@@ -417,6 +417,51 @@ aliases:    files
     }
   end
 
+  context 'with protocols set' do
+    let :params do
+      {
+        :protocols => 'db files',
+      }
+    end
+    let :facts do
+      { :osfamily => 'Debian' }
+    end
+
+    it {
+      should contain_file('nsswitch_config_file').with_content(/protocols:[\s]+db files$/)
+    }
+  end
+
+  context 'with ethers set' do
+    let :params do
+      {
+        :ethers => 'db files',
+      }
+    end
+    let :facts do
+      { :osfamily => 'Debian' }
+    end
+
+    it {
+      should contain_file('nsswitch_config_file').with_content(/ethers:[\s]+db files$/)
+    }
+  end
+
+  context 'with rpc set' do
+    let :params do
+      {
+        :rpc => 'db files',
+      }
+    end
+    let :facts do
+      { :osfamily => 'Debian' }
+    end
+
+    it {
+      should contain_file('nsswitch_config_file').with_content(/rpc:[\s]+db files$/)
+    }
+  end
+
   context 'with config_file set' do
     let :params do
       { :config_file => '/path/to/nsswitch.conf' }

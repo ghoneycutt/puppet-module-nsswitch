@@ -23,6 +23,9 @@ class nsswitch (
   $aliases                  = 'USE_DEFAULTS',
   $publickey                = 'USE_DEFAULTS',
   $netgroup                 = 'USE_DEFAULTS',
+  $protocols                = 'USE_DEFAULTS',
+  $ethers                   = 'USE_DEFAULTS',
+  $rpc                      = 'USE_DEFAULTS',
   $nsswitch_ipnodes         = 'USE_DEFAULTS',
   $nsswitch_printers        = 'USE_DEFAULTS',
   $nsswitch_auth_attr       = 'USE_DEFAULTS',
@@ -55,6 +58,9 @@ class nsswitch (
       $default_aliases            = 'files'
       $default_publickey          = 'files'
       $default_netgroup           = 'files'
+      $default_protocols          = 'files'
+      $default_ethers             = 'files'
+      $default_rpc                = 'files'
       $default_nsswitch_ipnodes   = undef
       $default_nsswitch_printers  = undef
       $default_nsswitch_auth_attr = undef
@@ -74,6 +80,9 @@ class nsswitch (
         $default_aliases    = 'files nisplus'
         $default_publickey  = 'nisplus'
         $default_netgroup   = 'files sss'
+        $default_protocols  = 'files'
+        $default_ethers     = 'files'
+        $default_rpc        = 'files'
       } else {
         $default_passwd     = 'files'
         $default_sudoers    = 'files'
@@ -86,6 +95,9 @@ class nsswitch (
         $default_aliases    = 'files'
         $default_publickey  = 'files'
         $default_netgroup   = 'files'
+        $default_protocols  = 'files'
+        $default_ethers     = 'files'
+        $default_rpc        = 'files'
       }
 
       $default_nsswitch_ipnodes   = undef
@@ -106,6 +118,9 @@ class nsswitch (
       $default_aliases            = 'files'
       $default_publickey          = 'files'
       $default_netgroup           = 'files'
+      $default_protocols          = 'files'
+      $default_ethers             = 'files'
+      $default_rpc                = 'files'
       $default_nsswitch_ipnodes   = 'files dns'
       $default_nsswitch_printers  = 'user files'
       $default_nsswitch_auth_attr = 'files'
@@ -123,6 +138,27 @@ class nsswitch (
     $passwd_real = $passwd
   }
   validate_string($passwd_real)
+
+  if $protocols == 'USE_DEFAULTS' {
+    $protocols_real = $default_protocols
+  } else {
+    $protocols_real = $protocols
+  }
+  validate_string($protocols_real)
+
+  if $ethers == 'USE_DEFAULTS' {
+    $ethers_real = $default_ethers
+  } else {
+    $ethers_real = $ethers
+  }
+  validate_string($ethers_real)
+
+  if $rpc == 'USE_DEFAULTS' {
+    $rpc_real = $default_rpc
+  } else {
+    $rpc_real = $rpc
+  }
+  validate_string($rpc_real)
 
   if $shadow == 'USE_DEFAULTS' {
     $shadow_real = $default_shadow

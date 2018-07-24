@@ -46,7 +46,78 @@ class nsswitch (
   validate_string($vas_nss_module_services)
 
   case $::osfamily {
-    'Debian','Suse': {
+    'Debian': {
+      case $::lsbdistid {
+        'Ubuntu': {
+          case $::lsbdistrelease {
+            '18.04': {
+              $default_passwd             = 'compat systemd'
+              $default_sudoers            = 'files'
+              $default_shadow             = 'compat'
+              $default_group              = 'compat systemd'
+              $default_hosts              = 'files dns'
+              $default_automount          = 'files'
+              $default_services           = 'db files'
+              $default_bootparams         = 'files'
+              $default_aliases            = 'files'
+              $default_publickey          = 'files'
+              $default_netgroup           = 'nis'
+              $default_protocols          = 'db files'
+              $default_ethers             = 'db files'
+              $default_rpc                = 'db files'
+              $default_nsswitch_ipnodes   = undef
+              $default_nsswitch_printers  = undef
+              $default_nsswitch_auth_attr = undef
+              $default_nsswitch_prof_attr = undef
+              $default_nsswitch_project   = undef
+            }
+            default: {
+              $default_passwd             = 'files'
+              $default_sudoers            = 'files'
+              $default_shadow             = 'files'
+              $default_group              = 'files'
+              $default_hosts              = 'files dns'
+              $default_automount          = 'files'
+              $default_services           = 'files'
+              $default_bootparams         = 'files'
+              $default_aliases            = 'files'
+              $default_publickey          = 'files'
+              $default_netgroup           = 'files'
+              $default_protocols          = 'files'
+              $default_ethers             = 'files'
+              $default_rpc                = 'files'
+              $default_nsswitch_ipnodes   = undef
+              $default_nsswitch_printers  = undef
+              $default_nsswitch_auth_attr = undef
+              $default_nsswitch_prof_attr = undef
+              $default_nsswitch_project   = undef
+            }
+          }
+        }
+        default: {
+          $default_passwd             = 'files'
+          $default_sudoers            = 'files'
+          $default_shadow             = 'files'
+          $default_group              = 'files'
+          $default_hosts              = 'files dns'
+          $default_automount          = 'files'
+          $default_services           = 'files'
+          $default_bootparams         = 'files'
+          $default_aliases            = 'files'
+          $default_publickey          = 'files'
+          $default_netgroup           = 'files'
+          $default_protocols          = 'files'
+          $default_ethers             = 'files'
+          $default_rpc                = 'files'
+          $default_nsswitch_ipnodes   = undef
+          $default_nsswitch_printers  = undef
+          $default_nsswitch_auth_attr = undef
+          $default_nsswitch_prof_attr = undef
+          $default_nsswitch_project   = undef
+        }
+      }
+    }
+    'Suse': {
       $default_passwd             = 'files'
       $default_sudoers            = 'files'
       $default_shadow             = 'files'

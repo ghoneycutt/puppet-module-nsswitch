@@ -142,7 +142,7 @@ passwd:     files sss
 shadow:     files sss
 group:      files sss
 
-sudoers:    files sss
+sudoers:    files
 
 hosts:      files dns myhostname
 

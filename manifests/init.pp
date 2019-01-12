@@ -70,7 +70,7 @@ class nsswitch (
     'RedHat': {
       if $::operatingsystemmajrelease == '7' {
         $default_passwd     = 'files sss'
-        $default_sudoers    = 'files sss'
+        $default_sudoers    = 'files'
         $default_shadow     = 'files sss'
         $default_group      = 'files sss'
         $default_hosts      = 'files dns myhostname'

@@ -280,6 +280,10 @@ class nsswitch (
     validate_string($nsswitch_project_real)
   }
 
+  if $::kernel == 'SunOS' {
+    include nsswitch::solaris
+  }
+
   file { 'nsswitch_config_file':
     ensure  => file,
     path    => $config_file,

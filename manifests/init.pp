@@ -3,45 +3,35 @@
 # This module manages nsswitch.
 #
 class nsswitch (
-  $config_file              = '/etc/nsswitch.conf',
-  $ensure_ldap              = 'absent',
-  $ensure_vas               = 'absent',
-  $vas_nss_module_passwd    = 'vas4',
-  $vas_nss_module_group     = 'vas4',
-  $vas_nss_module_automount = 'nis',
-  $vas_nss_module_netgroup  = 'nis',
-  $vas_nss_module_aliases   = undef,
-  $vas_nss_module_services  = undef,
-  $passwd                   = 'USE_DEFAULTS',
-  $sudoers                  = 'USE_DEFAULTS',
-  $shadow                   = 'USE_DEFAULTS',
-  $group                    = 'USE_DEFAULTS',
-  $hosts                    = 'USE_DEFAULTS',
-  $automount                = 'USE_DEFAULTS',
-  $services                 = 'USE_DEFAULTS',
-  $bootparams               = 'USE_DEFAULTS',
-  $aliases                  = 'USE_DEFAULTS',
-  $publickey                = 'USE_DEFAULTS',
-  $netgroup                 = 'USE_DEFAULTS',
-  $protocols                = 'USE_DEFAULTS',
-  $ethers                   = 'USE_DEFAULTS',
-  $rpc                      = 'USE_DEFAULTS',
-  $nsswitch_ipnodes         = 'USE_DEFAULTS',
-  $nsswitch_printers        = 'USE_DEFAULTS',
-  $nsswitch_auth_attr       = 'USE_DEFAULTS',
-  $nsswitch_prof_attr       = 'USE_DEFAULTS',
-  $nsswitch_project         = 'USE_DEFAULTS',
+  String $config_file              = '/etc/nsswitch.conf',
+  String $ensure_ldap              = 'absent',
+  String $ensure_vas               = 'absent',
+  String $vas_nss_module_passwd    = 'vas4',
+  String $vas_nss_module_group     = 'vas4',
+  String $vas_nss_module_automount = 'nis',
+  String $vas_nss_module_netgroup  = 'nis',
+  String $vas_nss_module_aliases   = undef,
+  String $vas_nss_module_services  = undef,
+  String $passwd                   = 'USE_DEFAULTS',
+  String $sudoers                  = 'USE_DEFAULTS',
+  String $shadow                   = 'USE_DEFAULTS',
+  String $group                    = 'USE_DEFAULTS',
+  String $hosts                    = 'USE_DEFAULTS',
+  String $automount                = 'USE_DEFAULTS',
+  String $services                 = 'USE_DEFAULTS',
+  String $bootparams               = 'USE_DEFAULTS',
+  String $aliases                  = 'USE_DEFAULTS',
+  String $publickey                = 'USE_DEFAULTS',
+  String $netgroup                 = 'USE_DEFAULTS',
+  String $protocols                = 'USE_DEFAULTS',
+  String $ethers                   = 'USE_DEFAULTS',
+  String $rpc                      = 'USE_DEFAULTS',
+  String $nsswitch_ipnodes         = 'USE_DEFAULTS',
+  String $nsswitch_printers        = 'USE_DEFAULTS',
+  String $nsswitch_auth_attr       = 'USE_DEFAULTS',
+  String $nsswitch_prof_attr       = 'USE_DEFAULTS',
+  String $nsswitch_project         = 'USE_DEFAULTS',
 ) {
-
-  validate_legacy(String, 'validate_absolute_path', $config_file)
-  validate_legacy(String, 'validate_re', $ensure_ldap, '^(present|absent)$', 'Valid values for ensure_ldap are \'absent\' and \'present\'.')
-  validate_legacy(String, 'validate_re', $ensure_vas, '^(present|absent)$','Valid values for ensure_vas are \'absent\' and \'present\'.')
-  validate_legacy(String, 'validate_string', $vas_nss_module_passwd)
-  validate_legacy(String, 'validate_string', $vas_nss_module_group)
-  validate_legacy(String, 'validate_string', $vas_nss_module_automount)
-  validate_legacy(String, 'validate_string', $vas_nss_module_netgroup)
-  validate_legacy(String, 'validate_string', $vas_nss_module_aliases)
-  validate_legacy(String, 'validate_string', $vas_nss_module_services)
 
   case $::osfamily {
     'Debian','Suse': {
@@ -135,107 +125,89 @@ class nsswitch (
   } else {
     $passwd_real = $passwd
   }
-  validate_legacy(String, 'validate_string', $passwd_real)
 
   if $protocols == 'USE_DEFAULTS' {
     $protocols_real = $default_protocols
   } else {
     $protocols_real = $protocols
   }
-  validate_legacy(String, 'validate_string', $protocols_real)
 
   if $ethers == 'USE_DEFAULTS' {
     $ethers_real = $default_ethers
   } else {
     $ethers_real = $ethers
   }
-  validate_legacy(String, 'validate_string', $ethers_real)
 
   if $rpc == 'USE_DEFAULTS' {
     $rpc_real = $default_rpc
   } else {
     $rpc_real = $rpc
   }
-  validate_legacy(String, 'validate_string', $rpc_real)
 
   if $shadow == 'USE_DEFAULTS' {
     $shadow_real = $default_shadow
   } else {
     $shadow_real = $shadow
   }
-  validate_legacy(String, 'validate_string', $shadow_real)
 
   if $sudoers == 'USE_DEFAULTS' {
     $sudoers_real = $default_sudoers
   } else {
     $sudoers_real = $sudoers
   }
-  validate_legacy(String, 'validate_string', $sudoers_real)
 
   if $group == 'USE_DEFAULTS' {
     $group_real = $default_group
   } else {
     $group_real = $group
   }
-  validate_legacy(String, 'validate_string', $group_real)
 
   if $hosts == 'USE_DEFAULTS' {
     $hosts_real = $default_hosts
   } else {
     $hosts_real = $hosts
   }
-  validate_legacy(String, 'validate_string', $hosts_real)
 
   if $automount == 'USE_DEFAULTS' {
     $automount_real = $default_automount
   } else {
     $automount_real = $automount
   }
-  validate_legacy(String, 'validate_string', $automount_real)
 
   if $services == 'USE_DEFAULTS' {
     $services_real = $default_services
   } else {
     $services_real = $services
   }
-  validate_legacy(String, 'validate_string', $services_real)
 
   if $bootparams == 'USE_DEFAULTS' {
     $bootparams_real = $default_bootparams
   } else {
     $bootparams_real = $bootparams
   }
-  validate_legacy(String, 'validate_string', $bootparams_real)
 
   if $aliases == 'USE_DEFAULTS' {
     $aliases_real = $default_aliases
   } else {
     $aliases_real = $aliases
   }
-  validate_legacy(String, 'validate_string', $aliases_real)
 
   if $publickey == 'USE_DEFAULTS' {
     $publickey_real = $default_publickey
   } else {
     $publickey_real = $publickey
   }
-  validate_legacy(String, 'validate_string', $publickey_real)
 
   if $netgroup == 'USE_DEFAULTS' {
     $netgroup_real = $default_netgroup
   } else {
     $netgroup_real = $netgroup
   }
-  validate_legacy(String, 'validate_string', $netgroup_real)
 
   if $nsswitch_ipnodes == 'USE_DEFAULTS' {
     $nsswitch_ipnodes_real = $default_nsswitch_ipnodes
   } else {
     $nsswitch_ipnodes_real = $nsswitch_ipnodes
-  }
-
-  if $nsswitch_ipnodes_real != undef {
-    validate_legacy(String, 'validate_string', $nsswitch_ipnodes_real)
   }
 
   if $nsswitch_printers == 'USE_DEFAULTS' {
@@ -244,18 +216,10 @@ class nsswitch (
     $nsswitch_printers_real = $nsswitch_printers
   }
 
-  if $nsswitch_printers_real != undef {
-    validate_legacy(String, 'validate_string', $nsswitch_printers_real)
-  }
-
   if $nsswitch_auth_attr == 'USE_DEFAULTS' {
     $nsswitch_auth_attr_real = $default_nsswitch_auth_attr
   } else {
     $nsswitch_auth_attr_real = $nsswitch_auth_attr
-  }
-
-  if $nsswitch_auth_attr_real != undef {
-    validate_legacy(String, 'validate_string', $nsswitch_auth_attr_real)
   }
 
   if $nsswitch_prof_attr == 'USE_DEFAULTS' {
@@ -264,18 +228,10 @@ class nsswitch (
     $nsswitch_prof_attr_real = $nsswitch_prof_attr
   }
 
-  if $nsswitch_prof_attr_real != undef {
-    validate_legacy(String, 'validate_string', $nsswitch_prof_attr_real)
-  }
-
   if $nsswitch_project == 'USE_DEFAULTS' {
     $nsswitch_project_real = $default_nsswitch_project
   } else {
     $nsswitch_project_real = $nsswitch_project
-  }
-
-  if $nsswitch_project_real != undef {
-    validate_legacy(String, 'validate_string', $nsswitch_project_real)
   }
 
   file { 'nsswitch_config_file':

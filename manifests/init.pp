@@ -33,7 +33,7 @@ class nsswitch (
   String $nsswitch_project         = 'USE_DEFAULTS',
 ) {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian','Suse': {
       $default_passwd             = 'files'
       $default_sudoers            = 'files'
@@ -56,7 +56,7 @@ class nsswitch (
       $default_nsswitch_project   = undef
     }
     'RedHat': {
-      if $::operatingsystemmajrelease == '7' {
+      if $facts['os']['release']['major'] == '7' {
         $default_passwd     = 'files sss'
         $default_sudoers    = 'files sss'
         $default_shadow     = 'files sss'
@@ -116,7 +116,7 @@ class nsswitch (
       $default_nsswitch_project   = 'files'
     }
     default: {
-      fail("nsswitch supports osfamilies Debian, RedHat, Solaris and Suse. Detected osfamily is <${::osfamily}>.")
+      fail("nsswitch supports osfamilies Debian, RedHat, Solaris and Suse. Detected osfamily is <${$facts['os']['release']['major']}>.")
     }
   }
 
